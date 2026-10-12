@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "{{PLUGIN_VERSION}}",
+  "id": "c3d69be8-4ea6-4df8-8aed-5cfec48ca45c",
+  "developer": {
+    "name": "boddev",
+    "websiteUrl": "https://github.com/boddev/cowork-data-platform-plugins",
+    "privacyUrl": "https://github.com/boddev/cowork-data-platform-plugins/blob/main/PRIVACY.md",
+    "termsOfUseUrl": "https://github.com/boddev/cowork-data-platform-plugins/blob/main/TERMS.md"
+  },
+  "name": {
+    "short": "Snowflake Data Connector",
+    "full": "Snowflake Data Connector for Copilot Cowork"
+  },
+  "description": {
+    "short": "Ask questions of your governed Snowflake data from Copilot Cowork.",
+    "full": "Connects Copilot Cowork to your Snowflake account (hosted on Azure) through the Snowflake-managed MCP server. Cowork can use the Cortex Agents, Cortex Analyst, Cortex Search and SQL tools that your Snowflake administrator exposes. Every request runs as the signed-in user's Snowflake role, so Snowflake role-based access control always applies."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#29B5E8",
+  "agentSkills": [
+    { "folder": "./skills/snowflake-data-assistant" }
+  ],
+  "agentConnectors": [
+    {
+      "id": "snowflake-mcp",
+      "displayName": "Snowflake",
+      "description": "Governed access to Snowflake data and Cortex tools through the Snowflake-managed MCP server.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "{{MCP_URL}}",
+          "authorization": {
+            "type": "OAuthPluginVault",
+            "referenceId": "{{AUTH_CONFIG_ID}}"
+          }
+        }
+      }
+    }
+  ]
+}

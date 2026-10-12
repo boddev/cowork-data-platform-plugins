@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "{{PLUGIN_VERSION}}",
+  "id": "fa4af02e-deb1-426d-b28c-0d0b0cff9ef5",
+  "developer": {
+    "name": "boddev",
+    "websiteUrl": "https://github.com/boddev/cowork-data-platform-plugins",
+    "privacyUrl": "https://github.com/boddev/cowork-data-platform-plugins/blob/main/PRIVACY.md",
+    "termsOfUseUrl": "https://github.com/boddev/cowork-data-platform-plugins/blob/main/TERMS.md"
+  },
+  "name": {
+    "short": "Databricks Data Connector",
+    "full": "Azure Databricks Data Connector for Copilot Cowork"
+  },
+  "description": {
+    "short": "Ask questions of your governed Azure Databricks data from Copilot Cowork.",
+    "full": "Connects Copilot Cowork to your Azure Databricks workspace through the Databricks-provided managed MCP servers (Genie One and, optionally, Databricks SQL). Every request runs as the signed-in user, so Unity Catalog permissions always apply."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#FF3621",
+  "agentSkills": [
+    { "folder": "./skills/databricks-data-assistant" }
+  ],
+  "agentConnectors": [
+    {
+      "id": "databricks-genie-mcp",
+      "displayName": "Azure Databricks Genie",
+      "description": "Natural-language analytics over governed Unity Catalog data through the Genie One MCP server.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://{{WORKSPACE_HOST}}/ai-gateway/mcp-services/system.ai.genie_one_mcp",
+          "authorization": {
+            "type": "OAuthPluginVault",
+            "referenceId": "{{GENIE_AUTH_CONFIG_ID}}"
+          }
+        }
+      }
+    }{{SQL_CONNECTOR}}
+  ]
+}

@@ -1,0 +1,15 @@
+,
+    {
+      "id": "databricks-sql-mcp",
+      "displayName": "Azure Databricks SQL",
+      "description": "Run specific SQL queries on a Databricks SQL warehouse with the caller's Unity Catalog permissions.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://{{WORKSPACE_HOST}}/ai-gateway/mcp-services/system.ai.dbsql",
+          "authorization": {
+            "type": "OAuthPluginVault",
+            "referenceId": "{{SQL_AUTH_CONFIG_ID}}"
+          }
+        }
+      }
+    }
